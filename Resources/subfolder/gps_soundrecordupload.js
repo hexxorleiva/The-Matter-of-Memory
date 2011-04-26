@@ -18,7 +18,7 @@ var tabGroup = win.tabGroup;
 Titanium.App.idleTimerDisabled = true;
 
 //	To affect where the POST operation for the PHP page will be executed, change the URL here.
-var posturl="http://hectorleiva.com/scripts/uploadingaudiocoordinates.php";
+var posturl="http://thematterofmemory.com/thematterofmemory_scripts/uploadaudio.php";
 
 //Creation of a new Directory to store both GPS and audio files. Will check if directory exists.
 var newDir = Titanium.Filesystem.getFile(Titanium.Filesystem.applicationDataDirectory,'mydir');
@@ -524,22 +524,43 @@ function sendtoserver() {
 	xhr.setTimeout(90000);
 	xhr.onload = function(e)
 	{
-	tabGroup.animate({bottom:0,duration:500});
-	setTimeout(function(){
-		successDisplay.show();
-	},500);
+	if (this.status == '404') {
+		Ti.API.info('error: http status code ' + this.status);
+		tabGroup.animate({bottom:0,duration:500});
+		setTimeout(function(){
+			lostServer.show(); // was successDisplay.show
+			},500);
 	
-	setTimeout(function(){
-		successDisplay.hide();
-	},3000);
-	//	If the upload is successful, alert to say "Success" and restore controls and remove activity indicator
-	win.remove(view);
-	actInd.hide();
-	win.remove(actInd);
-	progressBar.hide();
-	progressBar.value = 0;
-	win.remove(progressBar);
-	file = null;
+			setTimeout(function(){
+				lostServer.hide();
+				},3000);
+				//	If the upload results in a not found page
+		win.remove(view);
+		actInd.hide();
+		win.remove(actInd);
+		progressBar.hide();
+		progressBar.value = 0;
+		win.remove(progressBar);
+		file = null;
+	} else {
+		Ti.API.info('http status code ' + this.status);
+		tabGroup.animate({bottom:0,duration:500});
+		setTimeout(function(){
+			successDisplay.show();
+			},500);
+	
+			setTimeout(function(){
+				successDisplay.hide();
+				},3000);
+				//	If the upload is successful, alert to say "Success" and restore controls and remove activity indicator
+		win.remove(view);
+		actInd.hide();
+		win.remove(actInd);
+		progressBar.hide();
+		progressBar.value = 0;
+		win.remove(progressBar);
+		file = null;
+	}
 };
 
 xhr.onsendstream = function(e)
@@ -552,6 +573,7 @@ xhr.open('POST', posturl, false);
 xhr.send(postData);
 
 	} catch(e) {
+		Ti.API.info("In Error: " + e.error);
 		setTimeout(function(){
 		lostServer.show();
 		},1000);

@@ -204,7 +204,7 @@ var region_changing = function(){
 	//	Remove any previously set up annotations
 	removeAnnotations();
 	//	Contact server
-	var geturl="http://hectorleiva.com/scripts/mappingcoordinates.php?latitude=" + regionLatitude + "&longitude=" + regionLongitude;
+	var geturl="http://thematterofmemory.com/thematterofmemory_scripts/mappingcoordinates.php?latitude=" + regionLatitude + "&longitude=" + regionLongitude;
 	Titanium.API.info('Region Changed: ' + geturl);
 	
 	var xhr = Titanium.Network.createHTTPClient();
@@ -243,7 +243,7 @@ var region_changing = function(){
 		if(!isAndroid){
 		win.setToolbar([flexSpace,searchButton,flexSpace]);
 		}
-	Titanium.API.info('From Map_view.js: ' + this.responseText);
+	Titanium.API.info('From Map_view.js & The Matter of Memory.com: ' + this.responseText);
 	incomingData = JSON.parse(this.responseText);
 	for (var i = 0; i < incomingData.length; i++){
 	recorded = incomingData[i];

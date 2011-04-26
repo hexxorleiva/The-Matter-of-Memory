@@ -42,7 +42,7 @@ var stop;
 var incomingData;
 var longitude;
 var latitude;
-var streamPlayerurl = 'http://hectorleiva.com/scripts/';
+var streamPlayerurl = 'http://thematterofmemory.com/';
 
 //	Activity Indicator
 var actInd = Titanium.UI.createActivityIndicator({ 
@@ -247,7 +247,7 @@ function reloadSend(){
 		setTimeout(function(){
 			var xhr = Titanium.Network.createHTTPClient();
 			xhr.setTimeout(20000);
-			var geturl="http://hectorleiva.com/scripts/memorycoordinates.php?latitude=" + latitude + "&longitude=" + longitude;
+			var geturl="http://thematterofmemory.com/thematterofmemory_scripts/memorycoordinates.php?latitude=" + latitude + "&longitude=" + longitude;
 			xhr.open('GET', geturl, false);
 			xhr.onerror = function(e){
 		//	When there is an error, remove all links to the server to prevent from crashing
@@ -298,7 +298,7 @@ function reloadSend(){
 	var timeout = 0;
 	
 	tableView.setData([]);
-	var geturl="http://hectorleiva.com/scripts/memorycoordinates.php?latitude=" + latitude + "&longitude=" + longitude;
+	var geturl="http://thematterofmemory.com/thematterofmemory_scripts/memorycoordinates.php?latitude=" + latitude + "&longitude=" + longitude;
 	// Begin the "Get data" request
 		var xhr = Titanium.Network.createHTTPClient();
 		xhr.onerror = function(){
@@ -328,7 +328,7 @@ tableView.addEventListener('click', function(e){
 
 	Titanium.API.info('item index clicked :'+e.index);
 	Ti.API.info("Row object  = "+e.row);
-	Ti.API.info('http://hectorleiva.com/scripts/'+e.rowData.thisStream);
+	Ti.API.info('http://thematterofmemory.com/thematterofmemory_scripts/'+e.rowData.thisStream);
 	
 	//	When table view is hit, create a view that renders the rest of the options visible, but to focus on the buttons bar at the bottom.
 	
