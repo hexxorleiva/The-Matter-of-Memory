@@ -1,2 +1,8 @@
 Version 1.0 - The Matter of Memory
 **This application takes your current location and allows you to save an audio memory/moment of the location. The only way other's can listen to what you have said, will be for them to be in the same place to listen.**
+
+Version 2.0 - The Matter of Memory
+**Changed URL calls from single-string to double-string quotes, this helped solve server issues**
+
+Version 2.1 - The Matter of Memory
+**Placed a warning if the server returns a 404 error. Changed the URL to point to another server.**
